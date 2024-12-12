@@ -1,0 +1,60 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres
+    container_name: my_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dailyTasks
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: my_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+  server:
+    build:
+      context: ./server
+    container_name: server
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL="postgresql://user:password@postgres:5432/dailyTasks"
+      - PORT=3000
+    depends_on:
+      - postgres
+    volumes:
+      - ./server/src:/server/src
+
+  client:
+    build:
+      context: ./client
+    container_name: client
+    ports:
+      - "5173:5173" # Default port for Vite
+    environment:
+      VITE_API_URL: "http://server:3000/api/v1/"
+    depends_on:
+      - server
+    volumes:
+      - ./client/src:/client/src
+    command: [ "npm", "run", "dev" ]
+
+volumes:
+  postgres_data:
+  pgadmin_data:

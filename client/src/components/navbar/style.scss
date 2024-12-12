@@ -1,0 +1,15 @@
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 20px;
+  
+    .settings-icon {
+      margin-right: 30px;
+      cursor: pointer;
+    }
+  
+    .user-info{
+      font-weight: bold;
+    }
+  }
+  

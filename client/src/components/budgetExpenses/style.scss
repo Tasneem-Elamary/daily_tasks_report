@@ -1,0 +1,66 @@
+.budget-expense {
+    .date-filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+  
+      label {
+        font-size: 14px;
+        input {
+          margin-left: 5px;
+        }
+      }
+  
+      button {
+        padding: 5px 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+  
+        &:hover {
+          background-color: #45a049;
+        }
+      }
+    }
+  
+    .category-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+  
+      .category-card {
+        background-color: #f5f5f5;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  
+        .icon {
+          font-size: 30px;
+        }
+  
+        h4 {
+          margin: 10px 0;
+        }
+  
+        .progress-bar {
+          background-color: #e0e0e0;
+          height: 10px;
+          border-radius: 5px;
+          margin: 10px 0;
+  
+          .progress {
+            height: 10px;
+            border-radius: 5px;
+          }
+        }
+  
+        .status {
+          color: gray;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  
